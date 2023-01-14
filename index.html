@@ -17,8 +17,8 @@
             if (!playerSelection) {
                 return null
             }
-            let lowerPlayerText = playerSelection.toLowerCase()
-            let lowerComputerText = computerSelection.toLowerCase()
+            let lowerPlayerText = playerSelection.toLowerCase().trim();
+            let lowerComputerText = computerSelection.toLowerCase().trim();
             if (lowerPlayerText === lowerComputerText) {
                 console.log("Tie!")
                 return null
