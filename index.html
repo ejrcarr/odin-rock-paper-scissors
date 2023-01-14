@@ -14,6 +14,9 @@
         }
 
         function playRound(playerSelection, computerSelection) {
+            if (!playerSelection) {
+                return null
+            }
             let lowerPlayerText = playerSelection.toLowerCase()
             let lowerComputerText = computerSelection.toLowerCase()
             if (lowerPlayerText === lowerComputerText) {
