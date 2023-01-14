@@ -12,6 +12,37 @@
             let choices = ["Rock", "Paper", "Scissors"]
             return choices[Math.floor(Math.random() * 3)]
         }
+
+        function playRound(playerSelection, computerSelection) {
+            if (playerSelection.toLowerCase() === computerSelection.toLowerCase()) {
+                return "Tie!"
+            }
+            else if (playerSelection.toLowerCase() == 'paper' && 
+                computerSelection.toLowerCase() == 'rock') {
+                    return `You win! Paper beats rock!`
+            }
+            else if (playerSelection.toLowerCase() == 'scissors' && 
+                computerSelection.toLowerCase() == 'paper') {
+                    return `You win! Scissors beats paper!`
+            }
+            else if (playerSelection.toLowerCase() == 'rock' && 
+                computerSelection.toLowerCase() == 'scissors') {
+                    return `You win! Rock beats scissors!`
+            }
+            else {
+                let computerChoice = computerSelection.charAt(0).toUpperCase() + computerSelection.substr(1).toLowerCase();
+                let playerChoice = playerSelection.toLowerCase();
+                return `You lose! ${computerChoice} beats ${playerChoice}!`;
+            }
+        }
+
+        function game() {
+            
+        }
+
+        const playerSelection = "rock";
+        const computerSelection = getComputerChoice();
+        console.log(playRound(playerSelection, computerSelection));
     </script>
 </body>
 </html>
