@@ -20,6 +20,7 @@ body {
     height: 100vh;
     background: radial-gradient(rgb(34, 34, 34) 0%, black 100%);
     font-family: 'Poppins', sans-serif;
+    color: white;
 }
 
 header {
@@ -33,10 +34,73 @@ h1 {
     color: white;
 }
 
+.scoreboard {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.scoreboard > h3 {
+    flex: 0 0 100px;
+    text-align: center;
+}
+
+.scores {
+    position: relative;
+    padding: 0 50px;
+    font-size: 3rem;
+    font-weight: 600;
+    letter-spacing: 5px;
+    /* background: rgb(18, 18, 18); */
+    overflow: hidden;
+}
+
+.scores::before {
+    content: "";
+    position: absolute;
+    width: 195px;
+    height: 62px;
+    top: 5px;
+    left: 5px;
+    z-index: -1;
+    background: rgb(18, 18, 18);
+}
+
+.scores::after {
+    content: "";
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    top: -90px;
+    right: 0;
+    left: -22.5px;
+    bottom: 0;
+    z-index: -2;
+    background: linear-gradient(to bottom left, var(--rock-darker-color) 20%, var(--paper-darker-color) 50%, var(--scissors-darker-color) 90%);
+    animation: rotating 12s linear infinite
+}
+
+@keyframes rotating {
+    from {
+        -ms-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    to {
+        -ms-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
 .buttons {
     width: 100vw;
     display:flex;
-    padding: 0 12%;
+    padding: 50px 12%;
     gap: 5%;
 }
 

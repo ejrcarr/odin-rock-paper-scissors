@@ -4,73 +4,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/4c19d270de.js" crossorigin="anonymous"></script>
+    <script src="app.js" defer></script>
+    <link rel="stylesheet" href="style.css">
     <title>Rock-Paper-Scissors</title>
 </head>
 <body>
-    <script>
-        function getComputerChoice() {
-            let choices = ["Rock", "Paper", "Scissors"]
-            return choices[Math.floor(Math.random() * 3)]
-        }
-
-        function playRound(playerSelection, computerSelection) {
-            if (!playerSelection) {
-                return null
-            }
-            let lowerPlayerText = playerSelection.toLowerCase().trim();
-            let lowerComputerText = computerSelection.toLowerCase().trim();
-            if (lowerPlayerText === lowerComputerText) {
-                console.log("Tie!")
-                return null
-            }
-            else if (lowerPlayerText == 'paper' && 
-                    lowerComputerText == 'rock') {
-                    console.log(`You win! Paper beats rock!`)
-                    return true
-            }
-            else if (lowerPlayerText == 'scissors' && 
-                    lowerComputerText == 'paper') {
-                    console.log(`You win! Scissors beats paper!`)
-                    return true
-            }
-            else if (lowerPlayerText == 'rock' && 
-                    lowerComputerText == 'scissors') {
-                    console.log(`You win! Rock beats scissors!`)
-                    return true
-            }
-            else {
-                let computerChoice = computerSelection.charAt(0).toUpperCase() + computerSelection.substr(1).toLowerCase();
-                console.log(`You lose! ${computerChoice} beats ${lowerPlayerText}!`)
-                return false
-            }
-        }
-
-        function game() {
-            let playerScore = 0;
-            let computerScore = 0;
-            for (let i = 0; i < 5; i++) {
-                let playerSelection = prompt("What would you like to play?");
-                let computerSelection = getComputerChoice();
-                let result = playRound(playerSelection, computerSelection)
-                if (result) {
-                    playerScore++;
-                }
-                else if (result !== null) {
-                    computerScore++;
-                }
-            }
-            if (playerScore > computerScore) {
-                console.log("Congratulations! You win!")
-            }
-            else if (playerScore < computerScore) {
-                console.log("You lose!")
-            }
-            else {
-                console.log("It was a tie! Try again!")
-            }
-        }
-
-        game();
-    </script>
+    <header>
+        <h1>Rock-Paper-Scissors</h1>
+    </header>
+    <div class="scoreboard">
+        <h3>Player</h3>
+        <div class="scores"><span id="player-score">0</span>-<span id="computer-score">0</span></div>
+        <h3>Computer</h3>
+    </div>
+    <div class="buttons">
+        <button id="rock"><i class="fas fa-fist-raised"></i>Rock</button>
+        <button id="paper"><i class="fas fa-hand-paper"></i>Paper</button>
+        <button id = "scissors"><i class="fas fa-hand-peace"></i>Scissors</button>
+    </div>
+    
 </body>
 </html>
