@@ -63,7 +63,10 @@ h1 {
     width: 195px;
     height: 62px;
     top: 5px;
-    left: 5px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
     z-index: -1;
     background: rgb(18, 18, 18);
     border-radius: 5px;
@@ -81,6 +84,68 @@ h1 {
     z-index: -2;
     background: linear-gradient(to bottom left, var(--rock-darker-color) 20%, var(--paper-darker-color) 50%, var(--scissors-darker-color) 90%);
     animation: rotating 12s linear infinite
+}
+
+.game-over-modal {
+    display: grid;
+    place-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background:rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.game-over-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background:rgb(13, 13, 13);
+    width: 60vw;
+    height: 60vh;
+    padding: 50px 8%;
+    z-index: 5000;
+    position: relative;
+    text-align: center;
+}
+
+.game-over-content h1 {
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.game-over-content button {
+    border-radius: 10px;
+    padding: 1rem 2rem;
+    margin: 0 auto;
+    color: white;
+    background: transparent;
+    border: 2px solid white;
+    box-shadow: 0 0 5px 1px white, inset 0 0 5px 1px white;
+    text-shadow: 0 0 5px white, 0 0 5px white;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    letter-spacing: 3px;
+    cursor: pointer;
+}
+
+.game-over-content button:hover {
+    background: white;
+    color: black;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.217), 0 0 5px rgba(0, 0, 0, 0.217);
+    transition: background 400ms ease-in-out, color 300ms ease-in-out;
+}
+
+.content-wrapper {
+    z-index: 700;
+    padding: .2rem;
+    background: linear-gradient(to bottom right, var(--rock-darker-color) 20%, var(--paper-darker-color) 50%, var(--scissors-darker-color) 90%);
 }
 
 @keyframes rotating {
@@ -107,7 +172,7 @@ h1 {
     gap: 5%;
 }
 
-button {
+.buttons button {
     display: flex;
     position: relative;
     flex-direction: column;
@@ -125,9 +190,10 @@ button {
     cursor: pointer;
     font-family: 'Poppins', sans-serif;
     overflow: hidden;
+    max-width: 350px;
 }
 
-button::after {
+.buttons button::after {
     content: '';
     position: absolute;
     width: 25px;
@@ -164,7 +230,6 @@ button.clicked::after  {
     transition: scale 200ms ease-in, opacity 200ms ease-in-out;
     opacity: .5;
 }
-
 
 button > span, button > i {
     font-size: 100px;
@@ -222,17 +287,58 @@ button:hover > i {
     display: block !important;
 }
 
+.open {
+    opacity: 1;
+    pointer-events: all;
+    transition: opacity 200ms ease-in-out;
+}
+
 @media screen and (max-width: 800px) {
+
+    .game-over-content h1 {
+        font-size: 5vw;;
+    }
+    
+    .game-over-content button {
+        font-size: 3.5vw;
+        letter-spacing: 1px;
+        box-shadow: 0 0 2px 1px white, inset 0 0 2px 1px white;
+    }
+
+    .game-over-content {
+        height: 60vw;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .scoreboard > h3 {
+        font-size: .9rem;
+    }
+    
+    .scores {
+        font-size: 2.5rem;
+        width: 207.5px;
+    }
+    
+    .scores::before {
+        width: 180px;
+        height: 50px;
+        top: 5px;
+    }
+
     .buttons {
         padding: 50px 5%;
     }
     
-    button {
+    .buttons button {
         height: 200px;
         padding: 0 10px;
+        font-size: 1.25rem;
     }
 
-    button::after {
+    .buttons button::after {
         width: 15px;
         height: 15px;
     }

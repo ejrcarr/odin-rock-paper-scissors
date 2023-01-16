@@ -15,6 +15,9 @@ const computerRock = document.getElementById('computer-rock');
 const computerPaper = document.getElementById('computer-paper');
 const computerScissors = document.getElementById('computer-scissors');
 
+const gameOverModal = document.getElementById('game-over-modal');
+const gameOverMessage = document.querySelector('.game-over-message');
+
 function getComputerChoice() {
 	let choices = ['Rock', 'Paper', 'Scissors'];
 	return choices[Math.floor(Math.random() * 3)];
@@ -55,6 +58,8 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function handleButtonClicks() {
+	let restartButton = document.getElementById('restart-button');
+	restartButton.addEventListener('click', resetGame);
 	rockButton.addEventListener('click', assignRockButton);
 	paperButton.addEventListener('click', assignPaperButton);
 	scissorsButton.addEventListener('click', assignScissorsButton);
@@ -71,7 +76,9 @@ function assignRockButton() {
 function assignPaperButton() {
 	let result = playRound('paper', getComputerChoice());
 	paperButton.classList.add('clicked');
+	paperButton.childNodes[0].classList.add('clicked');
 	setTimeout(() => {
+		paperButton.childNodes[0].classList.remove('clicked');
 		paperButton.classList.remove('clicked');
 	}, 200);
 }
@@ -91,10 +98,13 @@ function updateScores(playerPoints, computerPoints) {
 	if (playerPoints >= 5 || computerPoints >= 5) {
 		if (playerPoints > computerPoints) {
 			commentaryPara.textContent = 'Congratulations! You win!';
+			gameOverMessage.textContent = 'Congratulations! You win!';
 		} else if (playerPoints < computerPoints) {
 			commentaryPara.textContent = 'You lose!';
+			gameOverMessage.textContent = 'You lose! Try again!';
 		} else {
 			commentaryPara.textContent = 'It was a tie! Try again!';
+			gameOverMessage.textContent = 'It was a tie! Try again!';
 		}
 		quitGame();
 		return;
@@ -112,7 +122,6 @@ function updateRoundIcons(playerSelection, computerSelection) {
 	);
 
 	playerIcons.forEach((icon) => {
-		console.log();
 		if (icon.id === playerChoice && !icon.classList.contains('active')) {
 			console.log('big here');
 			icon.classList.add('active');
@@ -131,7 +140,20 @@ function updateRoundIcons(playerSelection, computerSelection) {
 	});
 }
 
+function resetGame() {
+	handleButtonClicks();
+	gameOverModal.classList.remove('open');
+	let roundIcons = document.querySelectorAll('.current-round  i');
+	roundIcons.forEach((icon) => {
+		icon.classList.remove('active');
+	});
+	playerScoreSpan.textContent = 0;
+	computerScoreSpan.textContent = 0;
+	commentaryPara.textContent = 'Click a button to get started!';
+}
+
 function quitGame() {
+	gameOverModal.classList.add('open');
 	rockButton.removeEventListener('click', assignRockButton);
 	paperButton.removeEventListener('click', assignPaperButton);
 	scissorsButton.removeEventListener('click', assignScissorsButton);
