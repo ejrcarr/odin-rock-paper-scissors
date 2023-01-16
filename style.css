@@ -51,7 +51,6 @@ h1 {
     font-size: 3rem;
     font-weight: 600;
     letter-spacing: 5px;
-    /* background: rgb(18, 18, 18); */
     overflow: hidden;
     border-radius: 6px;
     text-align: center;
@@ -133,8 +132,6 @@ button::after {
     position: absolute;
     width: 25px;
     height: 25px;
-    /* top: 30%;
-    left: 30%; */
     left: 0;
     right: 0;
     margin-left: auto;
@@ -233,6 +230,11 @@ button:hover > i {
     button {
         height: 200px;
         padding: 0 10px;
+    }
+
+    button::after {
+        width: 15px;
+        height: 15px;
     }
 
     button i {
