@@ -34,7 +34,7 @@ h1 {
     color: white;
 }
 
-.scoreboard {
+.scoreboard, .current-round {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -54,6 +54,8 @@ h1 {
     /* background: rgb(18, 18, 18); */
     overflow: hidden;
     border-radius: 6px;
+    text-align: center;
+    width: 207.5px;
 }
 
 .scores::before {
@@ -108,6 +110,7 @@ h1 {
 
 button {
     display: flex;
+    position: relative;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -122,7 +125,49 @@ button {
     text-transform: uppercase;
     cursor: pointer;
     font-family: 'Poppins', sans-serif;
+    overflow: hidden;
 }
+
+button::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    /* top: 30%;
+    left: 30%; */
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 50%;
+    z-index: -2;
+    opacity: 0;
+    border: 1px solid var(--rock-color);
+    background: var(--rock-darker-color);
+}
+
+#paper::after {
+    border: 1px solid var(--paper-color);
+    background: var(--paper-darker-color);
+}
+
+#scissors::after {
+    border: 1px solid var(--scissors-color);
+    background: var(--scissors-darker-color);
+}
+
+button:hover::after {
+    scale: 10;
+    transition: scale 300ms ease-out, opacity 50ms ease-in-out;
+    opacity: .2;
+}
+
+button.clicked::after  {
+    scale: 17;
+    transition: scale 200ms ease-in, opacity 200ms ease-in-out;
+    opacity: .5;
+}
+
 
 button > span, button > i {
     font-size: 100px;
@@ -155,4 +200,42 @@ button:hover > i {
     box-shadow: 0 0 5px 2px var(--scissors-color), inset 0 0 5px 2px var(--scissors-color);
     color: var(--scissors-darker-color);
     text-shadow: 0 0 5px var(--scissors-color), 0 0 5px var(--scissors-color);
+}
+
+.current-round {
+    padding: 0 30%;
+    font-size: 3rem;
+}
+
+.current-round h3 {
+    flex: 0 0 50px;
+}
+
+.commentary {
+    padding: 25px 0;
+    text-align: center;
+    color: white;
+}
+
+.current-round h3 i {
+    display: none;
+}
+
+.active {
+    display: block !important;
+}
+
+@media screen and (max-width: 800px) {
+    .buttons {
+        padding: 50px 5%;
+    }
+    
+    button {
+        height: 200px;
+        padding: 0 10px;
+    }
+
+    button i {
+        font-size: 4rem;
+    }
 }
