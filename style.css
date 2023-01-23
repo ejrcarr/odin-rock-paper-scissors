@@ -23,17 +23,6 @@ body {
     color: white;
 }
 
-header {
-    padding: 50px;
-    margin: 0 auto;
-}
-
-h1 {
-    font-weight: 200;
-    text-shadow: 0 0 2px white, 0 0 2px white;
-    color: white;
-}
-
 .scoreboard, .current-round {
     display: flex;
     justify-content: space-evenly;
@@ -54,17 +43,18 @@ h1 {
     overflow: hidden;
     border-radius: 6px;
     text-align: center;
-    width: 207.5px;
+    /* width: 207.5px; */
 }
 
 .scores::before {
     content: "";
     position: absolute;
-    width: 195px;
+    /* width: 195px; */
     height: 62px;
     top: 5px;
-    left: 0;
-    right: 0;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
     margin-left: auto;
     margin-right: auto;
     z-index: -1;
@@ -75,18 +65,21 @@ h1 {
 .scores::after {
     content: "";
     position: absolute;
-    width: 250px;
-    height: 250px;
-    top: -90px;
+    width: 300px;
+    height: 300px;
+    top: -100px;
+    /* top: 0; */
     right: 0;
-    left: -22.5px;
+    left: -25px;
+    /* left: -22.5px; */
+    margin: 0 auto;
     bottom: 0;
     z-index: -2;
     background: linear-gradient(to bottom left, var(--rock-darker-color) 20%, var(--paper-darker-color) 50%, var(--scissors-darker-color) 90%);
     animation: rotating 12s linear infinite
 }
 
-.game-over-modal {
+.game-over-modal, .options-modal {
     display: grid;
     place-content: center;
     position: absolute;
@@ -100,7 +93,7 @@ h1 {
     pointer-events: none;
 }
 
-.game-over-content {
+.game-over-content, .options-content {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -120,7 +113,7 @@ h1 {
     letter-spacing: 2px;
 }
 
-.game-over-content button {
+.game-over-content button, .options-content button {
     border-radius: 10px;
     padding: 1rem 2rem;
     margin: 0 auto;
@@ -135,17 +128,126 @@ h1 {
     cursor: pointer;
 }
 
-.game-over-content button:hover {
+.game-over-content button:hover, .options-content button:hover{
     background: white;
     color: black;
     text-shadow: 0 0 5px rgba(0, 0, 0, 0.217), 0 0 5px rgba(0, 0, 0, 0.217);
     transition: background 400ms ease-in-out, color 300ms ease-in-out;
 }
 
-.content-wrapper {
+.content-wrapper, .options-content-wrapper {
     z-index: 700;
     padding: .2rem;
     background: linear-gradient(to bottom right, var(--rock-darker-color) 20%, var(--paper-darker-color) 50%, var(--scissors-darker-color) 90%);
+}
+
+.options-content h1 {
+    font-size: 2.5rem;
+    padding-bottom: 15px;
+}
+
+.options-content {
+    height: 500px;
+    border: 2px solid white;
+    border-radius: 10px;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.options-content button{
+    margin-top: 2rem;
+}
+
+.options-content div {
+    padding: 0 8%;
+    font-size: 1.5rem;
+}
+
+input[type=number]::-webkit-inner-spin-button {
+    opacity: 1;
+}
+
+input[type=number] {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.allow-ties {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .5em;
+}
+
+/* Checkbox */
+input[type="checkbox"] {
+    appearance: none;
+    background-color: #fff;
+    margin: 0;
+    font: inherit;
+    color: currentColor;
+    width: 1em;
+    height: 1em;
+    border: 1px solid currentColor;
+    border-radius: 0.15em;
+    transform: translateY(-0.075em);
+    display: grid;
+    place-content: center;
+}
+
+input[type="checkbox"]::before {
+    content: "";
+    width: 0.65em;
+    height: 0.65em;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em var(--form-control-color);
+}
+  
+input[type="checkbox"]:checked::before {
+    transform: scale(1);
+    background-color: black;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 50px;
+}
+
+h1 {
+    display: inline-block;
+    font-weight: 200;
+    text-shadow: 0 0 2px white, 0 0 2px white;
+    color: white;
+    text-align: center;
+}
+
+.dummy, .options {
+    width: 50px;
+    height: 50px;
+}
+
+#options {
+    background: transparent;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#options:hover i{
+    transform: rotate(60deg);
+    transition: transform 200ms ease-in-out;
+}
+
+#options i{
+    font-size: 2rem !important;
+    transition: transform 200ms ease-in-out;
 }
 
 @keyframes rotating {

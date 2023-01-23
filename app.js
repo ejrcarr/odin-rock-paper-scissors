@@ -18,6 +18,15 @@ const computerScissors = document.getElementById('computer-scissors');
 const gameOverModal = document.getElementById('game-over-modal');
 const gameOverMessage = document.querySelector('.game-over-message');
 
+const optionsModal = document.getElementById('options-modal');
+const optionsButton = document.getElementById('options');
+const closeOptionsModal = document.getElementById('close-modal');
+const scoreToWinInput = document.getElementById('quantity');
+const allowTiesInput = document.getElementById('ties');
+
+let numberRounds = 5;
+let allowTies = true;
+
 function getComputerChoice() {
 	let choices = ['Rock', 'Paper', 'Scissors'];
 	return choices[Math.floor(Math.random() * 3)];
@@ -26,6 +35,11 @@ function getComputerChoice() {
 function playRound(playerSelection, computerSelection) {
 	if (!playerSelection) {
 		return null;
+	}
+	if (!allowTies) {
+		while (playerSelection == computerSelection.toLowerCase()) {
+			computerSelection = getComputerChoice();
+		}
 	}
 	let playerScore = parseInt(playerScoreSpan.textContent);
 	let computerScore = parseInt(computerScoreSpan.textContent);
@@ -57,12 +71,43 @@ function playRound(playerSelection, computerSelection) {
 	}
 }
 
+function handleMaxScoreChange(e) {
+	console.log('here and ' + e.keyCode);
+	if (
+		this.value > 25 &&
+		e.keyCode !== 46 && // keycode for delete
+		e.keyCode !== 8 // keycode for backspace
+	) {
+		e.preventDefault();
+		this.value = 25;
+	} else if (this.value < 1 && e.keyCode !== 46 && e.keyCode !== 8) {
+		e.preventDefault();
+		this.value = 1;
+	} else {
+		numberRounds = this.value;
+	}
+}
+
+function handleAllowTiesChange() {
+	console.log(allowTies);
+	allowTies = !allowTies;
+	console.log(allowTies);
+}
+
 function handleButtonClicks() {
 	let restartButton = document.getElementById('restart-button');
 	restartButton.addEventListener('click', resetGame);
 	rockButton.addEventListener('click', assignRockButton);
 	paperButton.addEventListener('click', assignPaperButton);
 	scissorsButton.addEventListener('click', assignScissorsButton);
+	optionsButton.addEventListener('click', toggleOptionsModal);
+	closeOptionsModal.addEventListener('click', toggleOptionsModal);
+	scoreToWinInput.addEventListener('input', handleMaxScoreChange);
+	allowTiesInput.addEventListener('change', handleAllowTiesChange);
+}
+
+function toggleOptionsModal() {
+	optionsModal.classList.toggle('open');
 }
 
 function assignRockButton() {
@@ -95,7 +140,7 @@ function updateScores(playerPoints, computerPoints) {
 	playerScoreSpan.textContent = playerPoints;
 	computerScoreSpan.textContent = computerPoints;
 
-	if (playerPoints >= 5 || computerPoints >= 5) {
+	if (playerPoints >= numberRounds || computerPoints >= numberRounds) {
 		if (playerPoints > computerPoints) {
 			commentaryPara.textContent = 'Congratulations! You win!';
 			gameOverMessage.textContent = 'Congratulations! You win!';
@@ -123,10 +168,8 @@ function updateRoundIcons(playerSelection, computerSelection) {
 
 	playerIcons.forEach((icon) => {
 		if (icon.id === playerChoice && !icon.classList.contains('active')) {
-			console.log('big here');
 			icon.classList.add('active');
 		} else if (icon.id !== playerChoice) {
-			console.log('here');
 			icon.classList.remove('active');
 		}
 	});
