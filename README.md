@@ -1,4 +1,6 @@
 # odin-rock-paper-scissors
+Live link: <a target='_blank' href='https://ejrcarr.github.io/odin-rock-paper-scissors/'>Rock Paper Scissors<a>
+
 ## Background
 This is an implementation of the Rock Paper Scissors project from The Odin Project. Using HTML, CSS, and vanilla JavaScript, I implemented game logic and a UI to display your score against a computer. With adjustable rounds, optional tie option, and visual progression, this game is simple and customizable. 
 
