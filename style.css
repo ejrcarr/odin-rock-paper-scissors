@@ -113,7 +113,7 @@ body {
     letter-spacing: 2px;
 }
 
-.game-over-content button, .options-content button {
+.game-over-content button, .options-content .close-modal-button {
     border-radius: 10px;
     padding: 1rem 2rem;
     margin: 0 auto;
@@ -128,7 +128,7 @@ body {
     cursor: pointer;
 }
 
-.game-over-content button:hover, .options-content button:hover{
+.game-over-content button:hover, .options-content .close-modal-button:hover{
     background: white;
     color: black;
     text-shadow: 0 0 5px rgba(0, 0, 0, 0.217), 0 0 5px rgba(0, 0, 0, 0.217);
@@ -154,7 +154,7 @@ body {
     gap: 1rem;
 }
 
-.options-content button{
+.options-content .close-modal-button{
     margin-top: 2rem;
 }
 
@@ -164,24 +164,54 @@ body {
 }
 
 input[type=number]::-webkit-inner-spin-button {
-    opacity: 1;
+    appearance: none;
 }
 
 input[type=number] {
+    text-align: center;
     background: transparent;
     border: none;
     color: white;
-    font-size: 1.5rem;
+    font-size: 3rem;
+    font-weight: 600;
     border: 1px solid white;
     border-radius: 5px;
-    padding: 10px;
+    margin-left: .5em;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-.allow-ties {
+.allow-ties, .round-number {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: .5em;
+}
+
+.allow-ties {
+    gap: 1em;
+}
+
+.inc-dec-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 25px;
+}
+
+.inc-dec-buttons div {
+    cursor: pointer;
+    font-size: 2rem;
+    width: 35px;
+    height: 35px;
+    border: none;
+}
+
+.inc-dec-buttons .dec i {
+    display: block;
+}
+
+.inc-dec-buttons div:hover i {
+    color: gray;
 }
 
 /* Checkbox */

@@ -24,6 +24,9 @@ const closeOptionsModal = document.getElementById('close-modal');
 const scoreToWinInput = document.getElementById('quantity');
 const allowTiesInput = document.getElementById('ties');
 
+const incButton = document.querySelector('.inc');
+const decButton = document.querySelector('.dec');
+
 let numberRounds = 5;
 let allowTies = true;
 
@@ -72,7 +75,6 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function handleMaxScoreChange(e) {
-	console.log('here and ' + e.keyCode);
 	if (
 		this.value > 25 &&
 		e.keyCode !== 46 && // keycode for delete
@@ -83,15 +85,12 @@ function handleMaxScoreChange(e) {
 	} else if (this.value < 1 && e.keyCode !== 46 && e.keyCode !== 8) {
 		e.preventDefault();
 		this.value = 1;
-	} else {
-		numberRounds = this.value;
 	}
+	numberRounds = this.value;
 }
 
 function handleAllowTiesChange() {
-	console.log(allowTies);
 	allowTies = !allowTies;
-	console.log(allowTies);
 }
 
 function handleButtonClicks() {
@@ -104,6 +103,22 @@ function handleButtonClicks() {
 	closeOptionsModal.addEventListener('click', toggleOptionsModal);
 	scoreToWinInput.addEventListener('input', handleMaxScoreChange);
 	allowTiesInput.addEventListener('change', handleAllowTiesChange);
+	incButton.addEventListener('click', handleIncrementButton);
+	decButton.addEventListener('click', handleDecrementButton);
+}
+
+function handleIncrementButton() {
+	if (scoreToWinInput.value < 25) {
+		scoreToWinInput.value++;
+		numberRounds = scoreToWinInput.value;
+	}
+}
+
+function handleDecrementButton() {
+	if (scoreToWinInput.value > 1) {
+		scoreToWinInput.value--;
+		numberRounds = scoreToWinInput.value;
+	}
 }
 
 function toggleOptionsModal() {
