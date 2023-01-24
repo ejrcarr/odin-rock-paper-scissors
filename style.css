@@ -450,14 +450,15 @@ button:hover > i {
     }
     
     .scores {
-        font-size: 2.5rem;
+        font-size: 1.5rem;
         width: 207.5px;
+        letter-spacing: 1px;
     }
     
     .scores::before {
         width: 180px;
-        height: 50px;
-        top: 5px;
+        height: 30px;
+        top: 3px;
     }
 
     .buttons {
