@@ -8,7 +8,9 @@ I learned more on psuedo-elements and global variables in CSS, event listeners i
 
 ## UI Demonstration
 
-<img src="https://user-images.githubusercontent.com/110308975/214072927-eae5cabd-21ce-4051-bc97-4b22395e3732.gif" width="360" height="280">
+<p align='center'>
+<img src="https://user-images.githubusercontent.com/110308975/214072927-eae5cabd-21ce-4051-bc97-4b22395e3732.gif" width="450">
+</p>
 
 ## Progress
 ### First Phase
